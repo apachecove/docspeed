@@ -1,16 +1,12 @@
-package cmdownloader;
+package docSpeed;
 
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.jdesktop.application.Action;
-import org.jdesktop.application.ResourceMap;
 import org.jdesktop.application.SingleFrameApplication;
 import org.jdesktop.application.FrameView;
-import org.jdesktop.application.TaskMonitor;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,13 +14,9 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
-import javax.swing.Timer;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
@@ -44,74 +36,36 @@ import org.apache.poi.hssf.util.Region;
 /**
  * The application's main frame.
  */
-public class CMDownloaderView extends FrameView {
+public class DocSpeedView extends FrameView {
 
-    public CMDownloaderView(SingleFrameApplication app) {
+    public DocSpeedView(SingleFrameApplication app) {
         super(app);
 
         initComponents();
-
-        // status bar initialization - message timeout, idle icon and busy animation, etc
-        ResourceMap resourceMap = getResourceMap();
-        int messageTimeout = resourceMap.getInteger("StatusBar.messageTimeout");
-        messageTimer = new Timer(messageTimeout, new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            }
-        });
-        messageTimer.setRepeats(false);
-        int busyAnimationRate = resourceMap.getInteger("StatusBar.busyAnimationRate");
-        for (int i = 0; i < busyIcons.length; i++) {
-            busyIcons[i] = resourceMap.getIcon("StatusBar.busyIcons[" + i + "]");
-        }
-        busyIconTimer = new Timer(busyAnimationRate, new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                busyIconIndex = (busyIconIndex + 1) % busyIcons.length;
-            }
-        });
-
-        // connecting action tasks to status bar via TaskMonitor
-        TaskMonitor taskMonitor = new TaskMonitor(getApplication().getContext());
-        taskMonitor.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                String propertyName = evt.getPropertyName();
-                if ("started".equals(propertyName)) {
-                    if (!busyIconTimer.isRunning()) {
-                        busyIconIndex = 0;
-                        busyIconTimer.start();
-                    }
-                } else if ("done".equals(propertyName)) {
-                    busyIconTimer.stop();
-                } else if ("message".equals(propertyName)) {
-                    String text = (String)(evt.getNewValue());
-                    messageTimer.restart();
-                } else if ("progress".equals(propertyName)) {
-                    int value = (Integer)(evt.getNewValue());
-                }
-            }
-        });
-        getFrame().setIconImage(new ImageIcon("mexIcon.jpg").getImage());
-        log("CMDownloader v 0.5 by GotH (gothike) @ optinetgroup.com");
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(docSpeed.DocSpeedApp.class).getContext().getResourceMap(DocSpeedGetFileBox.class);
+        app.getMainView().getFrame().setIconImage(new ImageIcon("mexIcon.jpg").getImage());
+        log("DocSpeed v"+resourceMap.getString("Application.version")+" by "+resourceMap.getString("Application.vendor"));
         log("Ok ready when you are...");
     }
 
     @Action
     public void showAboutBox() {
         if (aboutBox == null) {
-            JFrame mainFrame = CMDownloaderApp.getApplication().getMainFrame();
-            aboutBox = new CMDownloaderAboutBox(mainFrame);
+            JFrame mainFrame = DocSpeedApp.getApplication().getMainFrame();
+            aboutBox = new DocSpeedAboutBox(mainFrame);
             aboutBox.setLocationRelativeTo(mainFrame);
         }
-        CMDownloaderApp.getApplication().show(aboutBox);
+        DocSpeedApp.getApplication().show(aboutBox);
     }
     
     @Action
     public void showBrowser() throws IOException {
-        JFrame mainFrame = CMDownloaderApp.getApplication().getMainFrame();
-        fileBox = new CMDownloaderGetFileBox(mainFrame, true);
+        JFrame mainFrame = DocSpeedApp.getApplication().getMainFrame();
+        fileBox = new DocSpeedGetFileBox(mainFrame, true);
         fileBox.setLocationRelativeTo(mainFrame);
         TXTFileFilter filtro = new TXTFileFilter();
         JFileChooser jFileChooser1 = new javax.swing.JFileChooser();
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(cmdownloader.CMDownloaderApp.class).getContext().getResourceMap(CMDownloaderGetFileBox.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(docSpeed.DocSpeedApp.class).getContext().getResourceMap(DocSpeedGetFileBox.class);
         jFileChooser1.setAcceptAllFileFilterUsed(false);
         jFileChooser1.setApproveButtonText(resourceMap.getString("jFileChooser1.approveButtonText")); // NOI18N
         jFileChooser1.setCurrentDirectory(new java.io.File("c:\\"));
@@ -151,7 +105,7 @@ public class CMDownloaderView extends FrameView {
 
         mainPanel.setName("mainPanel"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(cmdownloader.CMDownloaderApp.class).getContext().getResourceMap(CMDownloaderView.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(docSpeed.DocSpeedApp.class).getContext().getResourceMap(DocSpeedView.class);
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
 
@@ -159,7 +113,7 @@ public class CMDownloaderView extends FrameView {
         jTextField1.setText(resourceMap.getString("jTextField1.text")); // NOI18N
         jTextField1.setName("jTextField1"); // NOI18N
 
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(cmdownloader.CMDownloaderApp.class).getContext().getActionMap(CMDownloaderView.class, this);
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(docSpeed.DocSpeedApp.class).getContext().getActionMap(DocSpeedView.class, this);
         jButton1.setAction(actionMap.get("showBrowser")); // NOI18N
         jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
         jButton1.setName("jButton1"); // NOI18N
@@ -341,9 +295,9 @@ public class CMDownloaderView extends FrameView {
             try {
                 processLineByLine();
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(CMDownloaderView.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(DocSpeedView.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
-                Logger.getLogger(CMDownloaderView.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(DocSpeedView.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         
@@ -645,11 +599,7 @@ public class CMDownloaderView extends FrameView {
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
     // End of variables declaration//GEN-END:variables
-
-    private final Timer messageTimer;
-    private final Timer busyIconTimer;
-    private final Icon[] busyIcons = new Icon[15];
-    private int busyIconIndex = 0;
+    private String appVersion;
     private JDialog aboutBox;
     private JDialog fileBox;
 }

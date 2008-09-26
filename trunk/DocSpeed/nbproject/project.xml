@@ -11,7 +11,7 @@
             <test-roots/>
         </data>
         <swingapp xmlns="http://www.netbeans.org/ns/form-swingapp/1">
-            <application-class name="cmdownloader.CMDownloaderApp"/>
+            <application-class name="docSpeed.DocSpeedApp"/>
         </swingapp>
     </configuration>
 </project>

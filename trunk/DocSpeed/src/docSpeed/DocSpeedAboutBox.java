@@ -1,14 +1,14 @@
 /*
- * CMDownloaderAboutBox.java
+ * DocSpeedAboutBox.java
  */
 
-package cmdownloader;
+package docSpeed;
 
 import org.jdesktop.application.Action;
 
-public class CMDownloaderAboutBox extends javax.swing.JDialog {
+public class DocSpeedAboutBox extends javax.swing.JDialog {
 
-    public CMDownloaderAboutBox(java.awt.Frame parent) {
+    public DocSpeedAboutBox(java.awt.Frame parent) {
         super(parent);
         initComponents();
         getRootPane().setDefaultButton(closeButton);
@@ -40,13 +40,13 @@ public class CMDownloaderAboutBox extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(cmdownloader.CMDownloaderApp.class).getContext().getResourceMap(CMDownloaderAboutBox.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(docSpeed.DocSpeedApp.class).getContext().getResourceMap(DocSpeedAboutBox.class);
         setTitle(resourceMap.getString("title")); // NOI18N
         setModal(true);
         setName("aboutBox"); // NOI18N
         setResizable(false);
 
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(cmdownloader.CMDownloaderApp.class).getContext().getActionMap(CMDownloaderAboutBox.class, this);
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(docSpeed.DocSpeedApp.class).getContext().getActionMap(DocSpeedAboutBox.class, this);
         closeButton.setAction(actionMap.get("closeAboutBox")); // NOI18N
         closeButton.setName("closeButton"); // NOI18N
 

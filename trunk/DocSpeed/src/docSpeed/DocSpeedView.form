@@ -97,7 +97,7 @@
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
             <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-              <action class="cmdownloader.CMDownloaderView" id="showBrowser" methodName="showBrowser"/>
+              <action class="docSpeed.CMDownloaderView" id="showBrowser" methodName="showBrowser"/>
             </Property>
             <Property name="text" type="java.lang.String" resourceKey="jButton1.text"/>
             <Property name="name" type="java.lang.String" value="jButton1" noResource="true"/>
@@ -142,7 +142,7 @@
         <Component class="javax.swing.JButton" name="jButton2">
           <Properties>
             <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-              <action class="cmdownloader.CMDownloaderView" id="startScan" methodName="startScan"/>
+              <action class="docSpeed.CMDownloaderView" id="startScan" methodName="startScan"/>
             </Property>
             <Property name="text" type="java.lang.String" resourceKey="jButton2.text"/>
             <Property name="name" type="java.lang.String" value="jButton2" noResource="true"/>
@@ -215,7 +215,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="aboutMenuItem">
               <Properties>
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-                  <action class="cmdownloader.CMDownloaderView" id="showAboutBox" methodName="showAboutBox"/>
+                  <action class="docSpeed.CMDownloaderView" id="showAboutBox" methodName="showAboutBox"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="aboutMenuItem" noResource="true"/>
               </Properties>
