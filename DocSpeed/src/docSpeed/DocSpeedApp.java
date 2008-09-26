@@ -1,8 +1,8 @@
 /*
- * CMDownloaderApp.java
+ * DocSpeedApp.java
  */
 
-package cmdownloader;
+package docSpeed;
 
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
@@ -10,13 +10,13 @@ import org.jdesktop.application.SingleFrameApplication;
 /**
  * The main class of the application.
  */
-public class CMDownloaderApp extends SingleFrameApplication {
+public class DocSpeedApp extends SingleFrameApplication {
 
     /**
      * At startup create and show the main frame of the application.
      */
     @Override protected void startup() {
-        show(new CMDownloaderView(this));
+        show(new DocSpeedView(this));
     }
 
     /**
@@ -29,16 +29,16 @@ public class CMDownloaderApp extends SingleFrameApplication {
 
     /**
      * A convenient static getter for the application instance.
-     * @return the instance of CMDownloaderApp
+     * @return the instance of DocSpeedApp
      */
-    public static CMDownloaderApp getApplication() {
-        return Application.getInstance(CMDownloaderApp.class);
+    public static DocSpeedApp getApplication() {
+        return Application.getInstance(DocSpeedApp.class);
     }
 
     /**
      * Main method launching the application.
      */
     public static void main(String[] args) {
-        launch(CMDownloaderApp.class, args);
+        launch(DocSpeedApp.class, args);
     }
 }

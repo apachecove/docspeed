@@ -4,24 +4,24 @@
  */
 
 /*
- * CMDownloaderGetFileBox.java
+ * DocSpeedGetFileBox.java
  *
  * Created on 13/09/2008, 02:09:51 AM
  */
 
-package cmdownloader;
+package docSpeed;
 
-import java.awt.event.ActionEvent;
 import java.io.File;
+
 
 /**
  *
  * @author Administrador
  */
-public class CMDownloaderGetFileBox extends javax.swing.JDialog {
+public class DocSpeedGetFileBox extends javax.swing.JDialog {
 
-    /** Creates new form CMDownloaderGetFileBox */
-    public CMDownloaderGetFileBox(java.awt.Frame parent, boolean modal) {
+    /** Creates new form DocSpeedGetFileBox */
+    public DocSpeedGetFileBox(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -37,7 +37,7 @@ public class CMDownloaderGetFileBox extends javax.swing.JDialog {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(cmdownloader.CMDownloaderApp.class).getContext().getResourceMap(CMDownloaderGetFileBox.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(docSpeed.DocSpeedApp.class).getContext().getResourceMap(DocSpeedGetFileBox.class);
         setTitle(resourceMap.getString("Dialogo.title")); // NOI18N
         setLocationByPlatform(true);
         setName("Dialogo"); // NOI18N
@@ -66,7 +66,7 @@ public class CMDownloaderGetFileBox extends javax.swing.JDialog {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                CMDownloaderGetFileBox dialog = new CMDownloaderGetFileBox(new javax.swing.JFrame(), true);
+                DocSpeedGetFileBox dialog = new DocSpeedGetFileBox(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -82,7 +82,6 @@ public class CMDownloaderGetFileBox extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
 }
-
 class TXTFileFilter extends javax.swing.filechooser.FileFilter {
     public boolean accept(File f) {
         return f.isDirectory() || f.getName().toLowerCase().endsWith(".txt");
